@@ -380,7 +380,7 @@ export default {
   display: none;
 }
 .messageBox__image {
-  margin: 5px 25px 5px 5px;
+  margin: 5px 5px 5px 5px;
 }
 .messageBox__image img {
   border-radius: 5px;
