@@ -67,6 +67,9 @@
             <input type="file" accept="image/*" @change="sendImage($event)">
             <img src="../assets/camera.png">
           </div>
+          <div class="roomBottom__enter_message" @click="sendMessage($event)">
+            <img src="../assets/message.png">
+          </div>
         </div>
         <div class="roomBottom__input">
           <!-- 若要再帶入原生js的event(e)到function中，必須使用$event當參數傳入 -->
@@ -97,7 +100,7 @@ const msgRef = firebase.database().ref('/messages/');
 const storageRef = firebase.storage().ref('/images/');
 export default {
   // 指定此頁使用的name
-  name: 'ChatRoom',
+  name: 'LineMessage',
   // 資料位置，於html中可用{{}}渲染出來
   data() {
     return {
@@ -222,6 +225,7 @@ export default {
     const vm = this;
     msgRef.on('value', function(snapshot) {
       const val = snapshot.val();
+      console.log(val);
       vm.messages = val;
     })
   },
@@ -247,11 +251,11 @@ export default {
   margin: auto;
 }
 .container {
-  padding: 10px 30px 0px 0px;
+  padding: 10px 0px;
 }
 .name {
   text-align: center;
-  margin: 10px 50px 10px 0px;
+  margin: 10px 0px;
   color: #333333;
 }
 .reset {
@@ -266,7 +270,7 @@ export default {
 }
 .chatRoom {
   border-radius: 5px;
-  max-width: 500px;
+  max-width: 480px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 /* Head */
@@ -304,6 +308,7 @@ export default {
   margin: 0px 10px 6px 12px;
   border-radius: 50%;
   position: absolute;
+  left:0;
   cursor: pointer;
 }
 .roomHead__title {
@@ -432,21 +437,38 @@ export default {
   background-color: #FFFFFF;
 }
 .roomBottom__tools {
+  position: relative;
   border-top: solid 1px #E7E7E7;
   border-bottom: solid 2px #E7E7E7;
   background-color: #F6F6F6;
   height: 30px;
   padding: 0px 5px;
 }
-.roomBottom__tools_upload {
+.roomBottom__tools_upload{
   height: 20px;
   margin: 5px;
   padding: 1px;
   display: inline-block;
-  position: relative;
+  position: absolute;
+  left:10px;
   overflow: hidden;
 }
-.roomBottom__tools_upload:hover {
+.roomBottom__enter_message{
+  height: 20px;
+  margin: 5px;
+  padding: 1px;
+  display: inline-block;
+  position: absolute;
+  right:30px;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform .4s ease-in-out;
+  -ms-transition: -ms-transform .4s ease-in-out;
+  transition: transform .4s ease-in-out; 
+}
+.roomBottom__enter_message:hover{
+  transform: rotate(45deg);
+}
+.roomBottom__tools_upload:hover{
   border: solid 1px #DCDCDC;
 }
 .roomBottom__tools_upload input {
@@ -460,15 +482,15 @@ export default {
   /* 讓input file可以支援pointer要加pl100% */
   padding-left: 100%;
 }
-.roomBottom__tools_upload img {
+.roomBottom__tools_upload img, .roomBottom__enter_message img {
   height: 100%;
 }
 .roomBottom__input {
-  padding: 10px 10px 5px 10px;
+  padding: 4px 6px 0px 5px;
 }
 .roomBottom__input__textarea {
   width: 100%;
-  height: 60px;
+  height: 77px;
   border: none;
   resize: none;
   outline: none;
