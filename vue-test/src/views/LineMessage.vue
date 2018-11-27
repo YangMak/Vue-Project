@@ -15,7 +15,7 @@
           <div class="roomHead__button minimize"></div>
           <div class="roomHead__button zoom"></div>
         </div>
-        <img src="https://lorempixel.com/50/50/" class="roomHead__img" draggable="false">
+        <img src="https://picsum.photos/50/50/?random" class="roomHead__img" draggable="false">
         <div class="roomHead__title">Test Room</div>
       </div>
       <!-- 區塊：body -->
@@ -25,7 +25,7 @@
           <!-- other people -->
           <template v-if="item.userName != userName">
             <div class="messageBox">
-              <img src="https://lorempixel.com/40/40/" class="messageBox__user" draggable="false">
+              <img src="https://picsum.photos/40/40/?random" class="messageBox__user" draggable="false">
               <div class="messageBox__content">
                 <!-- 註解：Vue使用雙花括號{{}}來顯示script中data:的資料 -->
                 <div class="messageBox__name">{{item.userName}}</div>
@@ -331,6 +331,7 @@ export default {
 .messageBox {
   padding: 5px 10px;
   position: relative;
+  text-align: left;
 }
 .messageBox__user {
   height: 40px;
@@ -390,7 +391,7 @@ export default {
   transform: scale(0.7);
   color: #ACB0B8;
   vertical-align: bottom;
-  margin: 0px 0px 5px -12px;
+  margin: 0px 0px 5px -5px;
   display: inline-block;
 }
 .messageBox__progress {
@@ -428,7 +429,7 @@ export default {
   overflow: unset;
 }
 .messageBox--self .messageBox__time {
-  margin: 0px -16px 5px 0px;
+  margin: 0px -10px 5px 0px;
 }
 /* Bottom */
 .roomBottom {
